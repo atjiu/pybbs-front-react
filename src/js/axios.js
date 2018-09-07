@@ -29,9 +29,6 @@ Axios.interceptors.response.use(
       res.data.description = "服务器异常";
     }
     return res;
-  },
-  error => {
-    return Promise.reject(error);
   }
 );
 

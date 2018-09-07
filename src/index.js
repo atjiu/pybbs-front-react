@@ -19,8 +19,8 @@ import Login from './components/Login';
 import Register from './components/Register';
 import UserProfile from './components/UserProfile';
 import CreateTopic from './components/CreateTopic';
+import UserSettings from './components/UserSettings';
 import Error from './components/Error';
-// import NotMatch from './components/NotMatch';
 import DefaultLayout from './components/DefaultLayout';
 
 ReactDOM.render(
@@ -36,6 +36,7 @@ ReactDOM.render(
           <DefaultLayout path='/top100' component={Top100} />
           <DefaultLayout path='/login' component={Login} />
           <DefaultLayout path='/register' component={Register} />
+          <DefaultLayout path='/user/settings' component={UserSettings} />
           <DefaultLayout path='/user/:username' component={UserProfile} />
           {/* <Route component={NotMatch} /> */}
         </Switch>

@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { showToast } from '../actions/toast';
+import TopicList from './TopicList';
 
 class Home extends Component {
   componentDidMount() {
-    this.props.dispatch(showToast('123123', 3000));
   }
 
   render() {
     return (
-      <section className="animated bounce">
-          123123
+      <section className="animated fadeIn">
+        <TopicList/>
       </section>
     )
   }

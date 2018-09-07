@@ -30,6 +30,7 @@ input, textarea, select {
   padding: 10px;
   min-width: 300px;
   border-radius: $border-radius;
+  resize: none;
   &:focus {
     outline-color: transparent;
   }
@@ -49,6 +50,10 @@ button {
   &:focus {
     outline-color: transparent;
   }
+}
+
+img {
+  max-width: 100%;
 }
 
 table {
@@ -136,6 +141,104 @@ section {
   .form-content {
     width: 100%;
     height: 300px;
+  }
+  .topic-list {
+    ul {
+      list-style: none;
+      padding-left: 0;
+      li {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 10px 0;
+        padding: 10px 0 20px 0;
+        border-bottom: 1px solid $text-color;
+        &:last-child {
+          border: 0;
+        }
+        .topic {
+          flex: 1;
+          margin-left: 10px;
+        }
+        .avatar {
+          width: 50px;
+          height: 50px;
+          border-radius: $border-radius;
+        }
+        .title {
+          font-size: 20px;
+          font-weight: 400;
+          margin-bottom: 10px;
+        }
+        .topic-info {
+          // font-size: 18px;
+        }
+        .tab {
+          font-size: 12px;
+          background-color: $text-color;
+          padding: 5px;
+          color: #fff;
+          border-radius: $border-radius;
+        }
+      }
+    }
+  }
+  .topic-detail {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    border-bottom: 1px solid $text-color;
+    .topic {
+      flex: 1;
+      .title {
+        margin-bottom: 10px;
+        font-size: 24px;
+      }
+      .topic-info {
+        padding: 0 0 10px 5px;
+        .tab {
+          font-size: 14px;
+          background-color: $text-color;
+          padding: 5px;
+          color: #fff;
+          border-radius: $border-radius;
+        }
+      }
+    }
+    .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: $border-radius;
+    }
+  }
+  .topic-content {
+    line-height: 1.7em;
+    border-bottom: 2px solid $text-color;
+  }
+  .comments {
+    margin-top: 20px;
+  }
+  .comment-info {
+    .avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: $border-radius;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+  }
+  .comment-content {
+    // border-bottom: 1px solid $text-color;
+    margin-left: 34px;
+    &:last-child {
+      // border: 0;
+    }
+  }
+  .comment-editor {
+    padding: -10px;
+    textarea {
+      width: 98%;
+    }
   }
 }
 

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { showToast } from '../actions/toast';
 import Loading from './Loading';
 import DefaultAvatar from '../imgs/default-avatar.jpg';
 import Axios from '../js/axios';
 import moment from 'moment';
+import 'moment/locale/zh-cn.js';
 
 class UserProfile extends Component {
   constructor(props) {
@@ -45,7 +46,7 @@ class UserProfile extends Component {
       if (data.code === 200) {
         this.setState({
           loading_topics: false,
-          topics: data.detail.content
+          topics: this.state.topics.concat(data.detail.content)
         })
       } else {
         this.setState({
@@ -66,7 +67,7 @@ class UserProfile extends Component {
       if (data.code === 200) {
         this.setState({
           loading_comments: false,
-          comments: data.detail.content
+          comments: this.state.comments.concat(data.detail.content)
         })
       } else {
         this.setState({
@@ -79,11 +80,11 @@ class UserProfile extends Component {
   }
   render() {
     let topicsHtml;
-    if (this.state.topics.size > 0) {
+    if (this.state.topics.length > 0) {
       topicsHtml = this.state.topics.map((v, i) => {
         return (
-          <tr>
-            <td width="80%">{v.title}</td>
+          <tr key={i}>
+            <td width="80%"><Link to={'/topic/' + v.id}>{v.title}</Link></td>
             <td>{moment(v.inTime).fromNow()}</td>
           </tr>
         )
@@ -96,11 +97,11 @@ class UserProfile extends Component {
       )
     }
     let commentsHtml;
-    if (this.state.comments.size > 0) {
+    if (this.state.comments.length > 0) {
       commentsHtml = this.state.comments.map((v, i) => {
         return (
-          <tr>
-            <td width="80%">{v.topic.title}</td>
+          <tr key={i}>
+            <td width="80%"><Link to={'/topic/' + v.id}>{v.topic.title}</Link></td>
             <td>{moment(v.inTime).fromNow()}</td>
           </tr>
         )
@@ -118,7 +119,7 @@ class UserProfile extends Component {
           this.state.loading_info ?
             <Loading />
             :
-            <section className="user-info animated bounce">
+            <section className="user-info animated fadeIn">
               <div className="info">
                 {
                   this.state.info

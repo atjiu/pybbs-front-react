@@ -35,7 +35,7 @@ class Login extends Component {
 
   render() {
     return (
-      <section className="animated bounce">
+      <section className="animated fadeIn">
         {this.state.enable_redirect ? <Redirect to={this.state.redirect_url} /> : null}
         <table border="0">
           <caption><h3>登录</h3></caption>

@@ -43,12 +43,12 @@ class CreateTopic extends Component {
       } else {
         this.props.dispatch(showToast(data.description));
       }
-    }).catch(err => this.props.dispatch(showToast(err)));
+    }).catch(err => console.log('error', err));
   }
 
   render() {
     return (
-      <section className="animated bounce">
+      <section className="animated fadeIn">
         {this.state.enable_redirect ? <Redirect to={this.state.redirect_url} /> : null}
         <table border="0" width="80%">
           <caption><h3>创建话题</h3></caption>
