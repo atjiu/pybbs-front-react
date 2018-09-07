@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
 import {connect} from 'react-redux';
 import {showToast} from '../actions/toast';
-// import Axios from '../js/axios';
-import axios from 'axios';
-import qs from 'qs'
+import Axios from '../js/axios';
 
 class CreateTopic extends Component {
   constructor(props) {
@@ -31,29 +29,21 @@ class CreateTopic extends Component {
       this.props.dispatch(showToast("标题不能为空"));
       return;
     }
-    // Axios.post('/topic/create', {
-    //   tab: tab,
-    //   title: title,
-    //   content: content
-    // }).then(({data}) => {
-    //   console.log(111, data);
-    //   if (data.code === 200) {
-    //     this.setState({
-    //       enable_redirect: true,
-    //       redirect_url: "/topic/" + data.id
-    //     })
-    //   } else {
-    //     this.props.dispatch(showToast(data.description));
-    //   }
-    // }).catch(err => this.props.dispatch(showToast(err)));
-    axios.post('http://localhost:8080/topic/create', {
-      headers: {
-        'Authorization': "Bearer " + localStorage.getItem("accessToken"),
-        "Content-Type": "application/json"
-      }
+    Axios.post('/topic/create', {
+      tab: tab,
+      title: title,
+      content: content
     }).then(({data}) => {
-      console.log(data);
-    })
+      console.log(111, data);
+      if (data.code === 200) {
+        this.setState({
+          enable_redirect: true,
+          redirect_url: "/topic/" + data.detail
+        })
+      } else {
+        this.props.dispatch(showToast(data.description));
+      }
+    }).catch(err => this.props.dispatch(showToast(err)));
   }
 
   render() {

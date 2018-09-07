@@ -5,7 +5,7 @@ import { showToast } from '../actions/toast';
 
 class Home extends Component {
   componentDidMount() {
-    // this.props.dispatch(showToast('123123', 3000));
+    this.props.dispatch(showToast('123123', 3000));
   }
 
   render() {
