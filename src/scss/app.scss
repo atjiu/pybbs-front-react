@@ -1,0 +1,159 @@
+@import url('./animate.css');
+@import url('./loading.css');
+
+$text-color: #000;
+$border-radius: 5px;
+
+html, body {
+  font-size: 16px;
+  margin: 0 auto;
+}
+
+a {
+  color: $text-color;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+  &:visited {
+    text-decoration: underline;
+    color: $text-color;
+  }
+  &:active {
+    text-decoration: none;
+    color: $text-color;
+  }
+}
+
+input, textarea, select {
+  border: 2px solid $text-color;
+  padding: 10px;
+  min-width: 300px;
+  border-radius: $border-radius;
+  &:focus {
+    outline-color: transparent;
+  }
+}
+
+select {
+  option {
+    padding: 10px;
+  }
+}
+
+button {
+  border: 2px solid $text-color;
+  border-radius: $border-radius;
+  padding: 10px 15px;
+  background-color: #fff;
+  &:focus {
+    outline-color: transparent;
+  }
+}
+
+table {
+  border-spacing: 10px;
+  .action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.container {
+  width: 1080px;
+  margin: 0 auto;
+}
+
+.header {
+  height: 50px;
+  width: 100%;
+  line-height: 50px;
+  border-bottom: 2px solid $text-color;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  .logo {
+    font-size: 1.4em;
+  }
+  .right {
+    a, span {
+      margin-left: 10px;
+    }
+    span {
+      cursor: pointer;
+    }
+  }
+}
+
+.user-info {
+  display: flex;
+  .info {
+    .avatar-lg {
+      border-radius: $border-radius;
+      width: 200px;
+      height: 200px;
+    }
+    .profile {
+      list-style: none;
+      padding: 0;
+      .username {
+        font-size: 22px;
+        font-weight: 500;
+      }
+    }
+  }
+  .topics-comments {
+    flex: 1;
+    .topics {
+      margin-bottom: 20px;
+    }
+    .topics, .comments {
+      border: 2px solid $text-color;
+      border-radius: $border-radius;
+      margin-left: 20px;
+      table {
+        border-spacing: 0;
+        width: 100%;
+        caption {
+          font-weight: 500;
+          font-size: 18px;
+          padding: 10px 0;
+        }
+        td {
+          padding: 10px 15px;
+          border-top: 2px solid $text-color;
+        }
+      }
+    }
+  }
+}
+
+section {
+  .form-input {
+    width: 100%;
+  }
+  .form-content {
+    width: 100%;
+    height: 300px;
+  }
+}
+
+.footer {
+  margin-top: 20px;
+  border-top: 2px solid $text-color;
+  padding: 10px 0;
+}
+
+.toast {
+  z-index: 100;
+  position: absolute;
+  top: 40px;
+  right: 50px;
+  width: 300px;
+  min-height: 40px;
+  padding: 10px;
+  border: 2px solid $text-color;
+  border-radius: $border-radius;
+  background-color: #fff;
+}
