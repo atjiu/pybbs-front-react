@@ -31,7 +31,7 @@ class Top100 extends Component {
   }
   render() {
     return (
-      <section className="animated fadeIn score-list">
+      <section className="animated bounce score-list">
         <table border="0">
           <caption><h3>TOP100</h3></caption>
           <tbody>

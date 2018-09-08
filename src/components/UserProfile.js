@@ -118,7 +118,7 @@ class UserProfile extends Component {
           this.state.loading_info ?
             <Loading />
             :
-            <section className="user-info animated fadeIn">
+            <section className="user-info animated bounce">
               <div className="info">
                 {
                   this.state.info

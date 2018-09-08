@@ -89,7 +89,7 @@ class TopicDetail extends Component {
       tab = "招聘"
     }
     return (
-      <section className="animated fadeIn">
+      <section className="animated bounce">
         {
           this.state.enable_redirect
           ? <Redirect to="/"/>

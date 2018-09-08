@@ -9,7 +9,7 @@ class Home extends Component {
 
   render() {
     return (
-      <section className="animated fadeIn">
+      <section className="animated bounce">
         <TopicList/>
       </section>
     )

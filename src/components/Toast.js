@@ -8,7 +8,7 @@ class Toast extends Component {
   render() {
     return (
       <div>
-        {this.props.toast.show ? <div className="toast animated fadeInRight">{this.props.toast.msg}</div> : null}
+        {this.props.toast.show ? <div className="toast animated bounceRight">{this.props.toast.msg}</div> : null}
       </div>
     )
   }

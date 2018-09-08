@@ -62,7 +62,7 @@ class CommentList extends Component {
                       <div key={i}>
                         <div className="comment-info">
                           <img src={v.user.avatar ? v.user.avatar : DefaultAvatar} className="avatar" alt="avatar" />
-                          <span>{v.user.username}</span>&nbsp;
+                          <span><Link to={'/user/' + v.user.username}>{v.user.username}</Link></span>&nbsp;
                           <span>{moment(v.inTime).fromNow()}</span>&nbsp;
                         </div>
                         <p className="comment-content" dangerouslySetInnerHTML={{__html: v.content}}></p>

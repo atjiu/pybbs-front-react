@@ -78,58 +78,62 @@ class UserSettings extends Component {
   }
   render() {
     return (
-      <section className="animated fadeIn user-settings">
-        <div className="user-settings">
-          {
-            this.state.enable_redirect
-              ? <Redirect to={this.state.redirect_url} />
-              : null
-          }
-          <table border="0">
-            <caption><h3>修改资料</h3></caption>
-            <tbody>
-              <tr>
-                <td>用户名</td>
-                <td><input type="text" readOnly value={this.state.user.username} /></td>
-              </tr>
-              <tr>
-                <td>邮箱</td>
-                <td><input type="email" ref="email" value={this.state.user.email} /></td>
-              </tr>
-              <tr>
-                <td>头像</td>
-                <td><input type="text" ref="avatar" value={this.state.user.avatar} /></td>
-              </tr>
-              <tr>
-                <td>个人主页</td>
-                <td><input type="text" ref="website" value={this.state.user.website} /></td>
-              </tr>
-              <tr>
-                <td colSpan="2" align="right">
-                  <button onClick={() => this.save()}>保存</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <table border="0">
-            <caption><h3>修改密码</h3></caption>
-            <tbody>
-              <tr>
-                <td>原密码</td>
-                <td><input type="password" ref="rawPassword" /></td>
-              </tr>
-              <tr>
-                <td>新密码</td>
-                <td><input type="password" ref="newPassword" /></td>
-              </tr>
-              <tr>
-                <td colSpan="2" align="right">
-                  <button onClick={() => this.updatePassword()}>更新</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <section className="animated bounce user-settings">
+        {
+          this.state.loading
+          ? <Loading/>
+          : <div className="user-settings">
+              {
+                this.state.enable_redirect
+                  ? <Redirect to={this.state.redirect_url} />
+                  : null
+              }
+              <table border="0">
+                <caption><h3>修改资料</h3></caption>
+                <tbody>
+                  <tr>
+                    <td>用户名</td>
+                    <td><input type="text" readOnly value={this.state.user.username} /></td>
+                  </tr>
+                  <tr>
+                    <td>邮箱</td>
+                    <td><input type="email" ref="email" value={this.state.user.email} /></td>
+                  </tr>
+                  <tr>
+                    <td>头像</td>
+                    <td><input type="text" ref="avatar" value={this.state.user.avatar} /></td>
+                  </tr>
+                  <tr>
+                    <td>个人主页</td>
+                    <td><input type="text" ref="website" value={this.state.user.website} /></td>
+                  </tr>
+                  <tr>
+                    <td colSpan="2" align="right">
+                      <button onClick={() => this.save()}>保存</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table border="0">
+                <caption><h3>修改密码</h3></caption>
+                <tbody>
+                  <tr>
+                    <td>原密码</td>
+                    <td><input type="password" ref="rawPassword" /></td>
+                  </tr>
+                  <tr>
+                    <td>新密码</td>
+                    <td><input type="password" ref="newPassword" /></td>
+                  </tr>
+                  <tr>
+                    <td colSpan="2" align="right">
+                      <button onClick={() => this.updatePassword()}>更新</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        }
       </section>
     )
   }

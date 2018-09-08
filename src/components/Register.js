@@ -37,7 +37,7 @@ class Register extends Component {
 
   render() {
     return (
-      <section className="animated fadeIn">
+      <section className="animated bounce">
         {this.state.enable_redirect ? <Redirect to={this.state.redirect_url} /> : null}
         <table border="0">
           <caption><h3>注册</h3></caption>

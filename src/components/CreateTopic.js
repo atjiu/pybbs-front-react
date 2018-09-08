@@ -48,7 +48,7 @@ class CreateTopic extends Component {
 
   render() {
     return (
-      <section className="animated fadeIn">
+      <section className="animated bounce">
         {this.state.enable_redirect ? <Redirect to={this.state.redirect_url} /> : null}
         <table border="0" width="80%">
           <caption><h3>创建话题</h3></caption>
