@@ -25,6 +25,7 @@ Axios.interceptors.response.use(
     if (res.data && res.data.code === 202) {
       localStorage.removeItem("username");
       localStorage.removeItem("Authorization");
+      window.location.reload();
     } else if (res.data && res.data.code === 500) {
       res.data.description = "服务器异常";
     }

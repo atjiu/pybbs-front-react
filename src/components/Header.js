@@ -1,37 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { logout} from '../actions/header';
 import { Link, withRouter, Redirect } from 'react-router-dom';
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      enable_redirect: false,
-      redirect_url: '/'
-    }
-  }
-
   logout() {
     if (window.confirm('确定要登出吗？')) {
       localStorage.removeItem("accessToken");
       localStorage.removeItem("username");
-      this.setState({
-        enable_redirect: true
-      })
+      this.props.dispatch(logout())
     }
   }
 
   render() {
-    const username = localStorage.getItem("username");
     return (
       <div className="header">
-        {this.state.enable_redirect ? <Redirect to={this.state.redirect_url} /> : null}
+        {this.props.header.enable_redirect ? <Redirect to={this.props.header.redirect_url} /> : null}
         <Link to="/" className="logo">朋也社区</Link>
         {
-          username ?
+          this.props.header.username ?
             <div className="right">
               <Link to='/topic/create'>创建话题</Link>
-              <Link to={'/user/' + username}>{username}</Link>
+              <Link to={'/user/' + this.props.header.username}>{this.props.header.username}</Link>
               <Link to='/user/settings'>设置</Link>
               <span onClick={() => this.logout()}>登出</span>
             </div>
@@ -47,5 +37,5 @@ class Header extends Component {
 }
 
 export default connect((state) => {
-  return {}
+  return { header: state.header }
 })(withRouter(Header))

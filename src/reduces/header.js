@@ -1,17 +1,19 @@
-export default (state = {}, action) => {
+export default (state = {
+  enable_redirect: false,
+  redirect_url: '/',
+  username: localStorage.getItem("username")
+}, action) => {
   switch (action.type) {
     case "UPDATE_HEADER":
       return {
         ...state,
-        show: action.payload.show,
-        msg: action.payload.msg,
-        timeout: action.payload.timeout
+        username: action.payload.username
       }
-    case "HIDE_TOAST":
+    case "LOGOUT":
       return {
         ...state,
-        show: action.payload.show,
-        msg: action.payload.msg
+        enable_redirect: action.payload.enable_redirect,
+        username: action.payload.username
       }
     default:
       return state

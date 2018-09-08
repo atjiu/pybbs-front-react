@@ -13,6 +13,7 @@ class CommentList extends Component {
     super(props);
     this.state = {
       loading: true,
+      username: localStorage.getItem("username"),
       topicId: this.props.topicId,
       replyId: '',
       comments: this.props.comments
@@ -25,6 +26,10 @@ class CommentList extends Component {
   }
   createComment = (e) => {
     if (e.charCode === 13 && (e.ctrlKey || e.metaKey)) {
+      if (!this.state.username) {
+        this.props.dispatch(showToast("您还没有登录哦..."))
+        return;
+      }
       const content = this.refs.content.value;
       Axios.post("/comment/create", {
         topicId: this.state.topicId,
@@ -40,7 +45,7 @@ class CommentList extends Component {
         } else {
           this.props.dispatch(showToast(data.description))
         }
-      }).catch(err => this.props.dispatch(showToast(err)))
+      }).catch(err => this.props.dispatch(showToast(err.toString())))
     }
   }
   render() {

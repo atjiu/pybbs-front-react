@@ -102,6 +102,7 @@ table {
     .profile {
       list-style: none;
       padding: 0;
+      line-height: 1.7em;
       .username {
         font-size: 22px;
         font-weight: 500;
@@ -133,7 +134,27 @@ table {
     }
   }
 }
-
+.score-list {
+  table {
+    border-spacing: 0;
+    width: 100%;
+    caption {
+      font-weight: 500;
+      font-size: 18px;
+      padding: 10px 0;
+    }
+    td {
+      padding: 10px 15px;
+      border-top: 1px solid $text-color;
+      .avatar {
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+        border-radius: $border-radius;
+      }
+    }
+  }
+}
 section {
   .form-input {
     width: 100%;
@@ -141,6 +162,18 @@ section {
   .form-content {
     width: 100%;
     height: 300px;
+  }
+  .user-settings {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    table {
+      flex: 1;
+      padding-right: 20px;
+      input {
+        width: 95%;
+      }
+    }
   }
   .topic-list {
     ul {
@@ -169,9 +202,6 @@ section {
           font-size: 20px;
           font-weight: 400;
           margin-bottom: 10px;
-        }
-        .topic-info {
-          // font-size: 18px;
         }
         .tab {
           font-size: 12px;
@@ -203,6 +233,9 @@ section {
           color: #fff;
           border-radius: $border-radius;
         }
+        .topic-actions {
+          cursor: pointer;
+        }
       }
     }
     .avatar {
@@ -228,11 +261,7 @@ section {
     }
   }
   .comment-content {
-    // border-bottom: 1px solid $text-color;
     margin-left: 34px;
-    &:last-child {
-      // border: 0;
-    }
   }
   .comment-editor {
     padding: -10px;

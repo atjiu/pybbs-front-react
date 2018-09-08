@@ -35,7 +35,7 @@ class UserProfile extends Component {
           this.props.dispatch(showToast(data.description))
         }
       })
-      .catch(err => this.props.dispatch(showToast(err)));
+      .catch(err => this.props.dispatch(showToast(err.toString())));
     // 加载用户的话题
     Axios.get('/user/' + this.state.username + '/topics', {
       params: {
@@ -52,10 +52,10 @@ class UserProfile extends Component {
         this.setState({
           loading_topics: false
         })
-        this.props.dispatch(showToast(data.description, 3000))
+        this.props.dispatch(showToast(data.description))
       }
     }).catch(err => {
-      this.props.dispatch(showToast(err, 3000))
+      this.props.dispatch(showToast(err.toString()))
     });
     // 加载用户的评论
     Axios.get('/user/' + this.state.username + '/comments', {
@@ -75,8 +75,7 @@ class UserProfile extends Component {
         })
         this.props.dispatch(showToast(data.description))
       }
-    })
-      .catch(err => this.props.dispatch(showToast(err)));
+    }).catch(err => this.props.dispatch(showToast(err.toString())));
   }
   render() {
     let topicsHtml;
@@ -126,6 +125,7 @@ class UserProfile extends Component {
                     ? <div>
                       <img src={this.state.info.avatar ? this.state.info.avatar : DefaultAvatar} className="avatar-lg" alt="avatar" />
                       <ul className="profile">
+                        <li>积分 {this.state.info.score}&nbsp;&nbsp;<Link to="/top100">TOP100</Link></li>
                         <li className="username">{this.state.info.username}</li>
                         <li>{this.state.info.email}</li>
                         <li><a href={this.state.info.website}>{this.state.info.website}</a></li>

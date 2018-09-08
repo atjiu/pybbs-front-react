@@ -3,6 +3,7 @@ import { Link, Redirect, withRouter } from 'react-router-dom';
 import Axios from '../js/axios';
 import { connect } from 'react-redux';
 import { showToast } from '../actions/toast';
+import {updateHeader} from '../actions/header';
 
 class Register extends Component {
   constructor(props) {
@@ -23,14 +24,15 @@ class Register extends Component {
       if (data.code === 200) {
         localStorage.setItem("accessToken", data.detail);
         localStorage.setItem("username", username);
+        this.props.dispatch(updateHeader());
         Axios.defaults.headers.common['Authorization'] = "Bearer " + data.detail
         this.setState({
           enable_redirect: true
         });
       } else {
-        this.props.dispatch(showToast(data.description, 3000));
+        this.props.dispatch(showToast(data.description));
       }
-    }).catch(err => this.props.dispatch(showToast(err, 3000)));
+    }).catch(err => this.props.dispatch(showToast(err.toString())));
   }
 
   render() {

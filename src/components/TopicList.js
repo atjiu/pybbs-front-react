@@ -36,7 +36,7 @@ class TopicList extends Component {
         } else {
           this.props.dispatch(showToast(data.description))
         }
-      }).catch(err => this.props.dispatch(showToast(err)))
+      }).catch(err => this.props.dispatch(showToast(err.toString())))
     }
   }
   render() {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Axios from '../js/axios';
 import { connect } from 'react-redux';
 import { showToast } from '../actions/toast';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, Redirect } from 'react-router-dom';
 import Loading from './Loading';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
@@ -14,10 +14,13 @@ class TopicDetail extends Component {
     super(props);
     this.state = {
       id: this.props.match.params.id,
+      username: localStorage.getItem("username"),
       loading: true,
       topic: {},
+      collect: false,
       topicUser: {},
-      comments: []
+      comments: [],
+      enable_redirect: false
     }
   }
   componentWillMount() {
@@ -31,13 +34,48 @@ class TopicDetail extends Component {
         this.setState({
           loading: false,
           topic: data.detail.topic,
+          collect: data.detail.collect,
           topicUser: data.detail.topic.user,
           comments: data.detail.comments
         })
       } else {
         this.props.dispatch(showToast(data.description));
       }
-    }).catch(err => this.props.dispatch(showToast(err)))
+    }).catch(err => this.props.dispatch(showToast(err.toString())))
+  }
+  collect() {
+    let collect_url = "/collect/save";
+    if (this.state.collect){
+      collect_url = "/collect/delete";
+    }
+    Axios.post(collect_url, {
+      topicId: this.state.topic.id
+    }).then(({data}) => {
+      if(data.code === 200) {
+        this.setState({
+          collect: !this.state.collect
+        })
+      } else {
+        this.props.dispatch(showToast(data.description))
+      }
+    }).catch(err => this.props.dispatch(showToast(err.toString())))
+  }
+  deleteHandler() {
+    if (window.confirm("删除话题要扣分的哦，真的要删除这个话题吗？")) {
+      Axios.get('/topic/delete', {
+        params: {
+          id: this.state.topic.id
+        }
+      }).then(({data}) => {
+        if(data.code === 200) {
+          this.setState({
+            enable_redirect: true
+          })
+        } else {
+          this.props.dispatch(showToast(data.description))
+        }
+      }).catch(err => this.props.dispatch(showToast(err.toString())))
+    }
   }
   render() {
     let tab = "";
@@ -53,6 +91,11 @@ class TopicDetail extends Component {
     return (
       <section className="animated fadeIn">
         {
+          this.state.enable_redirect
+          ? <Redirect to="/"/>
+          : null
+        }
+        {
           this.state.loading
             ? <Loading />
             : (
@@ -65,6 +108,19 @@ class TopicDetail extends Component {
                       <span className="tab">{tab}</span>&nbsp;•&nbsp;
                       <span><Link to={'/user/' + this.state.topicUser.username}>{this.state.topicUser.username}</Link></span>&nbsp;•&nbsp;
                       <span>{moment(this.state.topic.inTime).fromNow()}</span>
+                      {
+                        this.state.username
+                        ? <span className="topic-actions">
+                            &nbsp;•&nbsp;<span onClick={() => this.collect()}>{this.state.collect ? '取消收藏': '收藏'}</span>
+                            {/* &nbsp;•&nbsp;<span>编辑</span>&nbsp;•&nbsp; */}
+                            {
+                              this.state.topicUser.username === this.state.username
+                              ? <span>&nbsp;•&nbsp;<span onClick={() => this.deleteHandler()}>删除</span></span>
+                              : null
+                            }
+                          </span>
+                        : null
+                      }
                     </div>
                   </div>
                   <img src={this.state.topicUser.avatar ? this.state.topicUser.avatar : DefaultAvatar} className="avatar" alt="avatar" />

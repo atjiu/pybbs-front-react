@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { showToast } from '../actions/toast';
+import { updateHeader } from '../actions/header'; 
 import Axios from '../js/axios';
 
 class Login extends Component {
@@ -24,13 +25,14 @@ class Login extends Component {
         localStorage.setItem("accessToken", data.detail);
         localStorage.setItem("username", username);
         Axios.defaults.headers.common['Authorization'] = "Bearer " + data.detail
+        this.props.dispatch(updateHeader())
         this.setState({
           enable_redirect: true
         })
       } else {
-        this.props.dispatch(showToast(data.description, 3000));
+        this.props.dispatch(showToast(data.description));
       }
-    }).catch(err => this.props.dispatch(showToast(err, 3000)));
+    }).catch(err => this.props.dispatch(showToast(err.toString())));
   }
 
   render() {
