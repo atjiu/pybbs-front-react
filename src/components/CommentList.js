@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, Redirect } from 'react-router-dom';
 import { showToast } from '../actions/toast';
 import Loading from './Loading';
 import moment from 'moment';
@@ -14,6 +14,7 @@ class CommentList extends Component {
     this.state = {
       loading: true,
       username: localStorage.getItem("username"),
+      admin: localStorage.getItem("admin"),
       topicId: this.props.topicId,
       replyId: '',
       comments: this.props.comments
@@ -48,6 +49,25 @@ class CommentList extends Component {
       }).catch(err => this.props.dispatch(showToast(err.toString())))
     }
   }
+  deleteHandler(id, i) {
+    console.log (id, i)
+    if (window.confirm("删除评论要扣分的哦，真的要删除这个评论吗？")) {
+      Axios.get('/comment/delete', {
+        params: {
+          id: id
+        }
+      }).then(({data}) => {
+        if(data.code === 200) {
+          this.state.comments.splice(i, 1)
+          this.setState({
+            comments: this.state.comments
+          })
+        } else {
+          this.props.dispatch(showToast(data.description))
+        }
+      }).catch(err => this.props.dispatch(showToast(err.toString())))
+    }
+  }
   render() {
     return (
       <div className="comments">
@@ -57,13 +77,18 @@ class CommentList extends Component {
             : <div>
               <div className="comment-list">
                 {
-                  this.state.comments.map(function (v, i) {
+                  this.state.comments.map((v, i) => {
                     return (
                       <div key={i}>
                         <div className="comment-info">
                           <img src={v.user.avatar ? v.user.avatar : DefaultAvatar} className="avatar" alt="avatar" />
                           <span><Link to={'/user/' + v.user.username}>{v.user.username}</Link></span>&nbsp;
                           <span>{moment(v.inTime).fromNow()}</span>&nbsp;
+                          {
+                            v.user.username === this.state.username || this.state.admin === 'true'
+                            ? <span><span onClick={() => this.deleteHandler(v.id, i)}>删除</span>&nbsp;</span>
+                            : null
+                          }
                         </div>
                         <p className="comment-content" dangerouslySetInnerHTML={{__html: v.content}}></p>
                       </div>
