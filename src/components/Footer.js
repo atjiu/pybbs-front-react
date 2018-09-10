@@ -5,8 +5,7 @@ class Footer extends Component {
     return (
       <div className="footer">
         <a href="https://github.com/tomoya92/pybbs">源码地址</a>&nbsp;|&nbsp;
-        <a href="https://github.com/tomoya92/pybbs">文档地址</a>&nbsp;|&nbsp;
-        <a href="https://github.com/tomoya92/pybbs">API</a>
+        <a href="https://github.com/tomoya92/pybbs/blob/master/api.md">文档/API地址</a>
         <p>致力于搭建一个分享发现好玩东西的社区</p>
       </div>
     )

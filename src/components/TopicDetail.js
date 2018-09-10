@@ -15,9 +15,12 @@ class TopicDetail extends Component {
     this.state = {
       id: this.props.match.params.id,
       username: localStorage.getItem("username"),
+      admin: localStorage.getItem("admin"),
       loading: true,
       topic: {},
       collect: false,
+      top: false,
+      good: false,
       topicUser: {},
       comments: [],
       enable_redirect: false
@@ -35,6 +38,8 @@ class TopicDetail extends Component {
           loading: false,
           topic: data.detail.topic,
           collect: data.detail.collect,
+          top: data.detail.topic.top,
+          good: data.detail.topic.good,
           topicUser: data.detail.topic.user,
           comments: data.detail.comments
         })
@@ -77,6 +82,32 @@ class TopicDetail extends Component {
       }).catch(err => this.props.dispatch(showToast(err.toString())))
     }
   }
+  topTopic() {
+    Axios.post('/topic/top', {
+      id: this.state.topic.id
+    }).then(({data}) => {
+      if(data.code === 200) {
+        this.setState({
+          top: !this.state.top
+        })
+      } else {
+        this.props.dispatch(showToast(data.description))
+      }
+    }).catch(err => this.props.dispatch(showToast(err.toString())))
+  }
+  goodTopic() {
+    Axios.post('/topic/good', {
+      id: this.state.topic.id
+    }).then(({data}) => {
+      if(data.code === 200) {
+        this.setState({
+          good: !this.state.good
+        })
+      } else {
+        this.props.dispatch(showToast(data.description))
+      }
+    }).catch(err => this.props.dispatch(showToast(err.toString())))
+  }
   render() {
     let tab = "";
     if (this.state.topic.tab === "ask") {
@@ -114,8 +145,16 @@ class TopicDetail extends Component {
                             &nbsp;•&nbsp;<span onClick={() => this.collect()}>{this.state.collect ? '取消收藏': '收藏'}</span>
                             {/* &nbsp;•&nbsp;<span>编辑</span>&nbsp;•&nbsp; */}
                             {
-                              this.state.topicUser.username === this.state.username
+                              this.state.topicUser.username === this.state.username || this.state.admin === 'true'
                               ? <span>&nbsp;•&nbsp;<span onClick={() => this.deleteHandler()}>删除</span></span>
+                              : null
+                            }
+                            {
+                              this.state.admin === 'true'
+                              ? <span>
+                                  &nbsp;•&nbsp;<span onClick={this.topTopic.bind(this)}>{this.state.top ? '取消置顶': '置顶'}</span>
+                                  &nbsp;•&nbsp;<span onClick={this.goodTopic.bind(this)}>{this.state.good ? '取消加精': '加精'}</span>
+                                </span>
                               : null
                             }
                           </span>

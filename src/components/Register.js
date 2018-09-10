@@ -22,10 +22,11 @@ class Register extends Component {
       password: password
     }).then(({ data }) => {
       if (data.code === 200) {
-        localStorage.setItem("accessToken", data.detail);
+        localStorage.setItem("accessToken", data.detail.token);
         localStorage.setItem("username", username);
+        localStorage.setItem("admin", data.detail.admin);
         this.props.dispatch(updateHeader());
-        Axios.defaults.headers.common['Authorization'] = "Bearer " + data.detail
+        Axios.defaults.headers.common['Authorization'] = "Bearer " + data.detail.token
         this.setState({
           enable_redirect: true
         });

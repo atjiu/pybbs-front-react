@@ -8,6 +8,7 @@ class Header extends Component {
     if (window.confirm('确定要登出吗？')) {
       localStorage.removeItem("accessToken");
       localStorage.removeItem("username");
+      localStorage.removeItem("admin");
       this.props.dispatch(logout())
     }
   }

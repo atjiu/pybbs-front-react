@@ -29,7 +29,8 @@ class UserSettings extends Component {
             this.setState({
               loading: false,
               user: data.detail
-            })
+            });
+            localStorage.setItem("admin", data.detail.admin);
           } else {
             this.props.dispatch(showToast(data.description))
           }

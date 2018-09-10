@@ -22,9 +22,10 @@ class Login extends Component {
       password: password
     }).then(({ data }) => {
       if (data.code === 200) {
-        localStorage.setItem("accessToken", data.detail);
+        localStorage.setItem("accessToken", data.detail.token);
         localStorage.setItem("username", username);
-        Axios.defaults.headers.common['Authorization'] = "Bearer " + data.detail
+        localStorage.setItem("admin", data.detail.admin);
+        Axios.defaults.headers.common['Authorization'] = "Bearer " + data.detail.token
         this.props.dispatch(updateHeader())
         this.setState({
           enable_redirect: true
