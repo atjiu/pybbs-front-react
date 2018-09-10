@@ -92,7 +92,8 @@
       "web.jsx",
       "jsx",
       "node",
-      "mjs"
+      "mjs",
+      "scss"
     ]
   },
   "babel": {

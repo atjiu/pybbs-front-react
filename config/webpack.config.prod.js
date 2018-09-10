@@ -149,7 +149,6 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-              
               compact: true,
             },
           },
@@ -165,6 +164,14 @@ module.exports = {
           // tags. If you use code splitting, however, any async bundles will still
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
+          {
+            test: /\.scss$/,
+            loaders: [
+              require.resolve('style-loader'),
+              require.resolve('css-loader'),
+              require.resolve('sass-loader')
+            ]
+          },
           {
             test: /\.css$/,
             loader: ExtractTextPlugin.extract(

@@ -16,8 +16,7 @@ class TopicList extends Component {
       pageNo: 1,
       hasMore: false,
       tab: '',
-      topics: [],
-      tabs: { 'ask': '问答' }
+      topics: []
     }
   }
   componentWillMount() {
