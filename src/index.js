@@ -30,7 +30,7 @@ ReactDOM.render(
         <Toast />
         <Switch>
           <DefaultLayout exact path='/' component={Home} />
-          <DefaultLayout exact path='/topic/create' component={CreateTopic} />
+          <DefaultLayout path='/topic/create' component={CreateTopic} />
           <DefaultLayout path='/topic/:id' component={TopicDetail} />
           <DefaultLayout path='/error' component={Error} />
           <DefaultLayout path='/top100' component={Top100} />
