@@ -75,6 +75,11 @@ class TopicList extends Component {
         <div>
           <ul>
             {
+              this.state.topics.length === 0 
+              ? <span>这里什么都没有...</span>
+              : null
+            }
+            {
               this.state.topics.map(function (v, i) {
                 let tab = "";
                 if (v.tab === "ask") {
