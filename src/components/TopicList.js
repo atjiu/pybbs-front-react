@@ -67,9 +67,11 @@ class TopicList extends Component {
                   tab = "分享"
                 } else if (v.tab === "job") {
                   tab = "招聘"
-                } else if (v.good) {
+                }
+                if (v.good) {
                   tab = "精华"
-                } else if (v.top) {
+                }
+                if (v.top) {
                   tab = "置顶"
                 }
                 return (

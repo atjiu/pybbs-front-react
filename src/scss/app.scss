@@ -200,13 +200,12 @@ section {
         }
         .title {
           font-size: 20px;
-          font-weight: 400;
-          margin-bottom: 10px;
+          font-weight: 500;
+          margin-bottom: 5px;
         }
         .tab {
-          font-size: 12px;
           background-color: $text-color;
-          padding: 5px;
+          padding: 0 5px;
           color: #fff;
           border-radius: $border-radius;
         }
@@ -229,7 +228,7 @@ section {
         .tab {
           font-size: 14px;
           background-color: $text-color;
-          padding: 5px;
+          padding: 0 5px;
           color: #fff;
           border-radius: $border-radius;
         }
@@ -283,6 +282,15 @@ section {
     background-color: $text-color;
     color: #fff;
   }
+}
+
+.top-good {
+  font-size: 24px;
+  background-color: $text-color;
+  color: #fff;
+  padding: 0 5px;
+  border-radius: $border-radius;
+  margin-right: 5px;
 }
 
 .footer {
