@@ -294,6 +294,22 @@ section {
   margin-right: 5px;
 }
 
+.tabs {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  border-bottom: 1px solid $text-color;
+  &>div {
+    cursor: pointer;
+    padding: 5px 0;
+    flex: 1;
+  }
+  &>div.active {
+    background-color: $text-color;
+    color: #fff;
+  }
+}
+
 .footer {
   margin-top: 20px;
   border-top: 2px solid $text-color;

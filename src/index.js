@@ -5,7 +5,6 @@ import './scss/app.scss';
 
 import {
   HashRouter,
-  BrowserRouter as Router,
   Switch
 } from 'react-router-dom';
 

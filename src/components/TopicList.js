@@ -12,10 +12,10 @@ class TopicList extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentTab: 'all',
       loading: true,
       pageNo: 1,
       hasMore: false,
-      tab: '',
       topics: []
     }
   }
@@ -30,11 +30,22 @@ class TopicList extends Component {
       this.fetchData();
     })
   }
+  changeTabFetchData(tab) {
+    this.setState({
+      currentTab: tab,
+      pageNo: 1,
+      loading: true,
+      hasMore: false,
+      topics: []
+    }, () => {
+      this.fetchData();
+    })
+  }
   fetchData() {
     if (this.state.topics.length === 0 || this.state.loading) {
       Axios.get('/', {
         params: {
-          tab: this.state.tab,
+          tab: this.state.currentTab === 'all' ? '' : this.state.currentTab,
           pageNo: this.state.pageNo
         }
       }).then(({ data }) => {
@@ -54,6 +65,13 @@ class TopicList extends Component {
   render() {
     return (
       <div className="topic-list">
+        <div className="tabs">
+          <div className={this.state.currentTab==='all'?'active':null} onClick={() => this.changeTabFetchData('all')}>全部</div>
+          <div className={this.state.currentTab==='share'?'active':null} onClick={() => this.changeTabFetchData('share')}>分享</div>
+          <div className={this.state.currentTab==='ask'?'active':null} onClick={() => this.changeTabFetchData('ask')}>问答</div>
+          <div className={this.state.currentTab==='blog'?'active':null} onClick={() => this.changeTabFetchData('blog')}>博客</div>
+          <div className={this.state.currentTab==='job'?'active':null} onClick={() => this.changeTabFetchData('job')}>招聘</div>
+        </div>
         <div>
           <ul>
             {

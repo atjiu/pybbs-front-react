@@ -4,13 +4,17 @@ import { connect } from 'react-redux';
 import TopicList from './TopicList';
 
 class Home extends Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentTab: 'all',
+    }
   }
 
   render() {
     return (
       <section className="animated bounce">
-        <TopicList/>
+        <TopicList ref="topicList"/>
       </section>
     )
   }
