@@ -101,9 +101,15 @@ class TopicList extends Component {
                   <li key={i}>
                     <img src={v.user.avatar ? v.user.avatar : DefaultAvatar} className="avatar" alt="avatar" />
                     <div className="topic">
-                      <div className="title"><Link to={'/topic/' + v.id}>{v.title}</Link></div>
+                      <div className="title">
+                        {
+                          v.url 
+                          ? <a href={v.url} target="_blank">[转]{v.title}</a>
+                          : <Link to={'/topic/' + v.id}>{v.title}</Link>
+                        }
+                      </div>
                       <div className="topic-info">
-                        <span>{v.commentCount}/{v.view}</span>&nbsp;•&nbsp;
+                        <span><Link to={"/topic/" + v.id}>{v.commentCount}/{v.view}</Link></span>&nbsp;•&nbsp;
                         <span className="tab">{tab}</span>&nbsp;•&nbsp;
                         <span><Link to={'/user/' + v.user.username}>{v.user.username}</Link></span>&nbsp;•&nbsp;
                         <span>{moment(v.inTime).fromNow()}</span>

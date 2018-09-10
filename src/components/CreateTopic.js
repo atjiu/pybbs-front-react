@@ -24,6 +24,7 @@ class CreateTopic extends Component {
   create() {
     const tab = this.refs.tab[this.refs.tab.selectedIndex].value;
     const title = this.refs.title.value;
+    const url = this.refs.url.value;
     const content = this.refs.content.value;
     if (!title) {
       this.props.dispatch(showToast("标题不能为空"));
@@ -32,6 +33,7 @@ class CreateTopic extends Component {
     Axios.post('/topic/create', {
       tab: tab,
       title: title,
+      url: url,
       content: content
     }).then(({data}) => {
       console.log(111, data);
@@ -67,6 +69,10 @@ class CreateTopic extends Component {
             <tr>
               <th>标题</th>
               <td><input type="text" ref="title" className="form-input" placeholder="标题" /></td>
+            </tr>
+            <tr>
+              <th>外链</th>
+              <td><input type="text" ref="url" className="form-input" placeholder="如果是转载的，就没必复制内容了" /></td>
             </tr>
             <tr>
               <th valign="top">内容</th>

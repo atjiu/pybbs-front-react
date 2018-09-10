@@ -136,7 +136,11 @@ class TopicDetail extends Component {
                     <div className="title">
                       {this.state.topic.top ? <span className="top-good">[顶]</span>: null}
                       {this.state.topic.good ? <span className="top-good">[精]</span>: null}
-                      {this.state.topic.title}
+                      {
+                        this.state.topic.url
+                        ? <a href={this.state.topic.url} target="_blank">{this.state.topic.title}</a>
+                        : this.state.topic.title
+                      }
                     </div>
                     <div className="topic-info">
                       <span>{this.state.topic.commentCount}/{this.state.topic.view}</span>&nbsp;•&nbsp;
