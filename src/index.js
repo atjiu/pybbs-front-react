@@ -4,6 +4,7 @@ import registerServiceWorker from './registerServiceWorker';
 import './scss/app.scss';
 
 import {
+  HashRouter,
   BrowserRouter as Router,
   Switch
 } from 'react-router-dom';
@@ -25,7 +26,7 @@ import DefaultLayout from './components/DefaultLayout';
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
+    <HashRouter>
       <div>
         <Toast />
         <Switch>
@@ -41,7 +42,7 @@ ReactDOM.render(
           {/* <Route component={NotMatch} /> */}
         </Switch>
       </div>
-    </Router>
+    </HashRouter>
   </Provider>
   , document.getElementById('root'));
 registerServiceWorker();
