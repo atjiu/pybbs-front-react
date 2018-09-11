@@ -52,11 +52,11 @@ class CreateTopic extends Component {
     return (
       <section className="animated bounce">
         {this.state.enable_redirect ? <Redirect to={this.state.redirect_url} /> : null}
-        <table border="0" width="80%">
+        <table border="0" width="100%" className="create-topic">
           <caption><h3>创建话题</h3></caption>
           <tbody>
             <tr>
-              <th>分类</th>
+              <th width="10%">分类</th>
               <td>
                 <select ref="tab">
                   <option value="ask">问答</option>

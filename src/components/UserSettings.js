@@ -41,10 +41,12 @@ class UserSettings extends Component {
     const avatar = this.refs.avatar.value;
     const email = this.refs.email.value;
     const website = this.refs.website.value;
+    const bio = this.refs.bio.value;
     Axios.post("/user/settings/profile", {
       avatar: avatar,
       email: email,
-      website: website
+      website: website,
+      bio: bio
     }).then(({ data }) => {
       if (data.code === 200) {
         this.props.dispatch(showToast('修改成功'));
@@ -93,20 +95,24 @@ class UserSettings extends Component {
                 <caption><h3>修改资料</h3></caption>
                 <tbody>
                   <tr>
-                    <td>用户名</td>
+                    <th>用户名</th>
                     <td><input type="text" readOnly value={this.state.user.username} /></td>
                   </tr>
                   <tr>
-                    <td>邮箱</td>
+                    <th>邮箱</th>
                     <td><input type="email" ref="email" value={this.state.user.email} /></td>
                   </tr>
                   <tr>
-                    <td>头像</td>
+                    <th>头像</th>
                     <td><input type="text" ref="avatar" value={this.state.user.avatar} /></td>
                   </tr>
                   <tr>
-                    <td>个人主页</td>
+                    <th>个人主页</th>
                     <td><input type="text" ref="website" value={this.state.user.website} /></td>
+                  </tr>
+                  <tr>
+                    <th valign="top">个人简介</th>
+                    <td><textarea ref="bio" rows="5">{this.state.user.bio}</textarea></td>
                   </tr>
                   <tr>
                     <td colSpan="2" align="right">
@@ -119,11 +125,11 @@ class UserSettings extends Component {
                 <caption><h3>修改密码</h3></caption>
                 <tbody>
                   <tr>
-                    <td>原密码</td>
+                    <th>原密码</th>
                     <td><input type="password" ref="rawPassword" /></td>
                   </tr>
                   <tr>
-                    <td>新密码</td>
+                    <th>新密码</th>
                     <td><input type="password" ref="newPassword" /></td>
                   </tr>
                   <tr>

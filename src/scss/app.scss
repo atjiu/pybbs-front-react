@@ -3,6 +3,9 @@
 
 $text-color: #000;
 $border-radius: 5px;
+$small-width: 768px;
+$middle-width: 992px;
+$large-width: 1200px;
 
 html, body {
   font-size: 16px;
@@ -26,19 +29,25 @@ a {
 }
 
 input, textarea, select {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
   border: 2px solid $text-color;
-  padding: 10px;
-  min-width: 300px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: $text-color;
+  width: 100%;
   border-radius: $border-radius;
+  display: block;
   resize: none;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   &:focus {
     outline-color: transparent;
-  }
-}
-
-select {
-  option {
-    padding: 10px;
   }
 }
 
@@ -66,8 +75,25 @@ table {
 }
 
 .container {
-  width: 1080px;
-  margin: 0 auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: $small-width) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: $middle-width) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: $large-width) {
+  .container {
+    width: 1170px;
+  }
 }
 
 .header {
@@ -93,7 +119,10 @@ table {
 
 .user-info {
   display: flex;
+  flex-wrap: wrap;
   .info {
+    flex: 0 0 200px;
+    margin-right: 20px;
     .avatar-lg {
       border-radius: $border-radius;
       width: 200px;
@@ -107,6 +136,30 @@ table {
         font-size: 22px;
         font-weight: 500;
       }
+      .bio {
+        font-size: 14px;
+        line-height: 1.5em;
+        font-style: italic;
+      }
+      @media (max-width: $middle-width) {
+        .bio {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          line-clamp: 3;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+  @media (max-width: $middle-width) {
+    .info {
+      flex: 0 0 1;
+      width: 100%;
+    }
+    .topics-comments {
+      flex: 0 0 1;
+      width: 100%;
+      margin-left: 0;
     }
   }
   .topics-comments {
@@ -117,7 +170,6 @@ table {
     .topics, .comments {
       border: 2px solid $text-color;
       border-radius: $border-radius;
-      margin-left: 20px;
       table {
         border-spacing: 0;
         width: 100%;
@@ -166,12 +218,27 @@ section {
   .user-settings {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     table {
-      flex: 1;
-      padding-right: 20px;
-      input {
-        width: 95%;
+      flex: 0 0 0.5;
+      width: 50%;
+      th {
+        text-align: right;
+        width: 15%;
+      }
+    }
+    @media (max-width: $middle-width) {
+      table {
+        flex: 0 0 1;
+        width: 100%;
+      }
+    }
+  }
+  @media (max-width: $small-width) {
+    .create-topic {
+      th {
+        display: none;
       }
     }
   }
@@ -246,6 +313,7 @@ section {
   .topic-content {
     line-height: 1.7em;
     border-bottom: 2px solid $text-color;
+    word-break: break-all;
   }
   .comments {
     margin-top: 20px;
@@ -262,12 +330,7 @@ section {
   }
   .comment-content {
     margin-left: 34px;
-  }
-  .comment-editor {
-    padding: -10px;
-    textarea {
-      width: 98%;
-    }
+    word-break: break-all;
   }
 }
 

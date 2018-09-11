@@ -129,7 +129,7 @@ class UserProfile extends Component {
                         <li className="username">{this.state.info.username}</li>
                         <li>{this.state.info.email}</li>
                         <li><a href={this.state.info.website}>{this.state.info.website}</a></li>
-                        <li>{this.state.info.bio}</li>
+                        <li className="bio">{this.state.info.bio}</li>
                       </ul>
                     </div>
                     : <p>用户不存在</p>

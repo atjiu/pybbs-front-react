@@ -21,6 +21,8 @@ class TopicList extends Component {
   }
   componentWillMount() {
     this.fetchData()
+    const url = new URL('https://www.tuicool.com/articles/INFRr2M');
+    console.log(url);
   }
   loadMore() {
     this.setState({
@@ -104,7 +106,13 @@ class TopicList extends Component {
                       <div className="title">
                         {
                           v.url 
-                          ? <a href={v.url} target="_blank">[转]{v.title}</a>
+                          ? <span><a href={v.url} target="_blank">[转]{v.title}</a>
+                            {
+                              v.url
+                              ? <span style={{fontSize: 14, fontStyle: 'italic'}}>&nbsp;&nbsp;{new URL(v.url).hostname}</span>
+                              : null
+                            }
+                          </span>
                           : <Link to={'/topic/' + v.id}>{v.title}</Link>
                         }
                       </div>
