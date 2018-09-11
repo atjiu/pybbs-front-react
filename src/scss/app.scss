@@ -117,6 +117,14 @@ table {
   }
 }
 
+.login-register {
+  width: 100%;
+  th {
+    width: 15%;
+    text-align: left;
+  }
+}
+
 .user-info {
   display: flex;
   justify-content: space-between;

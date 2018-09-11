@@ -40,15 +40,15 @@ class Register extends Component {
     return (
       <section className="animated bounce">
         {this.state.enable_redirect ? <Redirect to={this.state.redirect_url} /> : null}
-        <table border="0">
+        <table border="0" className="login-register">
           <caption><h3>注册</h3></caption>
           <tbody>
             <tr>
-              <td>用户名</td>
+              <th>用户名</th>
               <td><input type="text" ref="username" placeholder="用户名" /></td>
             </tr>
             <tr>
-              <td>密码</td>
+              <th>密码</th>
               <td><input type="password" ref="password" placeholder="密码" /></td>
             </tr>
             <tr>
