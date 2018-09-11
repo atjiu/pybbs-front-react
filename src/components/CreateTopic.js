@@ -36,7 +36,6 @@ class CreateTopic extends Component {
       url: url,
       content: content
     }).then(({data}) => {
-      console.log(111, data);
       if (data.code === 200) {
         this.setState({
           enable_redirect: true,

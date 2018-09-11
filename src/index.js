@@ -19,6 +19,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import UserProfile from './components/UserProfile';
 import CreateTopic from './components/CreateTopic';
+import EditTopic from './components/EditTopic';
 import UserSettings from './components/UserSettings';
 import Error from './components/Error';
 import DefaultLayout from './components/DefaultLayout';
@@ -31,6 +32,7 @@ ReactDOM.render(
         <Switch>
           <DefaultLayout exact path='/' component={Home} />
           <DefaultLayout path='/topic/create' component={CreateTopic} />
+          <DefaultLayout path='/topic/edit/:id' component={EditTopic} />
           <DefaultLayout path='/topic/:id' component={TopicDetail} />
           <DefaultLayout path='/error' component={Error} />
           <DefaultLayout path='/top100' component={Top100} />

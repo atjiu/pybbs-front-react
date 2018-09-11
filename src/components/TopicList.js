@@ -21,8 +21,6 @@ class TopicList extends Component {
   }
   componentWillMount() {
     this.fetchData()
-    const url = new URL('https://www.tuicool.com/articles/INFRr2M');
-    console.log(url);
   }
   loadMore() {
     this.setState({

@@ -23,7 +23,8 @@ class TopicDetail extends Component {
       good: false,
       topicUser: {},
       comments: [],
-      enable_redirect: false
+      enable_redirect: false,
+      redirect_url: '/'
     }
   }
   componentWillMount() {
@@ -54,7 +55,7 @@ class TopicDetail extends Component {
       collect_url = "/collect/delete";
     }
     Axios.post(collect_url, {
-      topicId: this.state.topic.id
+      topicId: this.state.id
     }).then(({data}) => {
       if(data.code === 200) {
         this.setState({
@@ -65,11 +66,17 @@ class TopicDetail extends Component {
       }
     }).catch(err => this.props.dispatch(showToast(err.toString())))
   }
+  editTopic() {
+    this.setState({
+      enable_redirect: true,
+      redirect_url: '/topic/edit/' + this.state.id
+    })
+  }
   deleteHandler() {
     if (window.confirm("删除话题要扣分的哦，真的要删除这个话题吗？")) {
       Axios.get('/topic/delete', {
         params: {
-          id: this.state.topic.id
+          id: this.state.id
         }
       }).then(({data}) => {
         if(data.code === 200) {
@@ -84,7 +91,7 @@ class TopicDetail extends Component {
   }
   topTopic() {
     Axios.post('/topic/top', {
-      id: this.state.topic.id
+      id: this.state.id
     }).then(({data}) => {
       if(data.code === 200) {
         this.setState({
@@ -97,7 +104,7 @@ class TopicDetail extends Component {
   }
   goodTopic() {
     Axios.post('/topic/good', {
-      id: this.state.topic.id
+      id: this.state.id
     }).then(({data}) => {
       if(data.code === 200) {
         this.setState({
@@ -123,7 +130,7 @@ class TopicDetail extends Component {
       <section className="animated bounce">
         {
           this.state.enable_redirect
-          ? <Redirect to="/"/>
+          ? <Redirect to={this.state.redirect_url}/>
           : null
         }
         {
@@ -151,10 +158,12 @@ class TopicDetail extends Component {
                         this.state.username
                         ? <span className="topic-actions">
                             &nbsp;•&nbsp;<span onClick={() => this.collect()}>{this.state.collect ? '取消收藏': '收藏'}</span>
-                            {/* &nbsp;•&nbsp;<span>编辑</span>&nbsp;•&nbsp; */}
                             {
                               this.state.topicUser.username === this.state.username || this.state.admin === 'true'
-                              ? <span>&nbsp;•&nbsp;<span onClick={() => this.deleteHandler()}>删除</span></span>
+                              ? <span>
+                                  &nbsp;•&nbsp;<span onClick={() => this.editTopic()}>编辑</span>
+                                  &nbsp;•&nbsp;<span onClick={() => this.deleteHandler()}>删除</span>
+                                </span>
                               : null
                             }
                             {
