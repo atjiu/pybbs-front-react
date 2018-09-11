@@ -2,8 +2,7 @@ import axios from 'axios';
 import qs from 'qs';
 
 const Axios = axios.create({
-  // baseURL: 'http://localhost:8080'
-  baseURL: 'https://api.yiiu.co'
+  baseURL: process.env.NODE_ENV === 'production' ? 'https://api.yiiu.co' : 'http://localhost:8080'
 });
 
 Axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem("accessToken");
