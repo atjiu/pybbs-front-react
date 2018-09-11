@@ -119,6 +119,7 @@ table {
 
 .user-info {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
   .info {
     flex: 0 0 200px;
@@ -151,17 +152,6 @@ table {
       }
     }
   }
-  @media (max-width: $middle-width) {
-    .info {
-      flex: 0 0 1;
-      width: 100%;
-    }
-    .topics-comments {
-      flex: 0 0 1;
-      width: 100%;
-      margin-left: 0;
-    }
-  }
   .topics-comments {
     flex: 1;
     .topics {
@@ -183,6 +173,17 @@ table {
           border-top: 2px solid $text-color;
         }
       }
+    }
+  }
+  @media (max-width: $middle-width) {
+    .info {
+      flex: 0 0 1;
+      min-width: 100%;
+    }
+    .topics-comments {
+      flex: 1;
+      width: 100%;
+      margin-left: 0;
     }
   }
 }
