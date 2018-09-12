@@ -9,6 +9,6 @@ const middleware = applyMiddleware(thunk, createLogger());
 
 export default createStore(
   reduce, 
-  // process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() : null,
+  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   middleware,
 );

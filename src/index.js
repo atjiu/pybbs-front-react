@@ -13,6 +13,9 @@ import store from './store';
 
 import Toast from './components/Toast';
 import Home from './components/Home';
+import CollectList from './components/CollectList';
+import UserTopics from './components/UserTopics';
+import UserComments from './components/UserComments';
 import TopicDetail from './components/TopicDetail';
 import Top100 from './components/Top100';
 import Login from './components/Login';
@@ -39,6 +42,9 @@ ReactDOM.render(
           <DefaultLayout path='/login' component={Login} />
           <DefaultLayout path='/register' component={Register} />
           <DefaultLayout path='/user/settings' component={UserSettings} />
+          <DefaultLayout path='/user/:username/collects' component={CollectList} />
+          <DefaultLayout path='/user/:username/topics' component={UserTopics} />
+          <DefaultLayout path='/user/:username/comments' component={UserComments} />
           <DefaultLayout path='/user/:username' component={UserProfile} />
           {/* <Route component={NotMatch} /> */}
         </Switch>

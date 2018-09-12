@@ -127,6 +127,7 @@ class UserProfile extends Component {
                       <ul className="profile">
                         <li>积分 {this.state.info.score}&nbsp;&nbsp;<Link to="/top100">TOP100</Link></li>
                         <li className="username">{this.state.info.username}</li>
+                        <li><Link to={'/user/' + this.state.username + '/collects'}>我的收藏</Link></li>
                         <li>{this.state.info.email}</li>
                         <li><a href={this.state.info.website}>{this.state.info.website}</a></li>
                         <li className="bio">{this.state.info.bio}</li>
@@ -144,6 +145,9 @@ class UserProfile extends Component {
                         <caption>{this.state.username} 的话题</caption>
                         <tbody>
                           {topicsHtml}
+                          <tr>
+                            <td colSpan="2" align="right"><Link to={'/user/' + this.state.username + '/topics'}>查看更多&gt;&gt;</Link></td>
+                          </tr>
                         </tbody>
                       </table>
                     </div>
@@ -156,6 +160,9 @@ class UserProfile extends Component {
                         <caption>{this.state.username} 的评论</caption>
                         <tbody>
                           {commentsHtml}
+                          <tr>
+                            <td colSpan="2" align="right"><Link to={'/user/' + this.state.username + '/comments'}>查看更多&gt;&gt;</Link></td>
+                          </tr>
                         </tbody>
                       </table>
                     </div>
