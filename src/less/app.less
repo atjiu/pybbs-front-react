@@ -1,30 +1,32 @@
 @import url('./animate.css');
 @import url('./loading.css');
 
-$text-color: #000;
-$border-radius: 5px;
-$small-width: 768px;
-$middle-width: 992px;
-$large-width: 1200px;
+@text-color: #000;
+@border-radius: 5px;
+@small-width: 768px;
+@middle-width: 992px;
+@large-width: 1200px;
 
 html, body {
   font-size: 16px;
   margin: 0 auto;
+  background-color: #f5f6f7;
+  color: #4f4f4f;
 }
 
 a {
-  color: $text-color;
+  color: @text-color;
   text-decoration: none;
   &:hover {
     text-decoration: underline;
   }
   &:visited {
     text-decoration: underline;
-    color: $text-color;
+    color: @text-color;
   }
   &:active {
     text-decoration: none;
-    color: $text-color;
+    color: @text-color;
   }
 }
 
@@ -32,13 +34,13 @@ input, textarea, select {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
-  border: 2px solid $text-color;
+  border: 2px solid @text-color;
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.42857143;
-  color: $text-color;
+  color: @text-color;
   width: 100%;
-  border-radius: $border-radius;
+  border-radius: @border-radius;
   display: block;
   resize: none;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
@@ -52,8 +54,8 @@ input, textarea, select {
 }
 
 button {
-  border: 2px solid $text-color;
-  border-radius: $border-radius;
+  border: 2px solid @text-color;
+  border-radius: @border-radius;
   padding: 10px 15px;
   background-color: #fff;
   &:focus {
@@ -80,17 +82,17 @@ table {
   margin-right: auto;
   margin-left: auto;
 }
-@media (min-width: $small-width) {
+@media (min-width: @small-width) {
   .container {
     width: 750px;
   }
 }
-@media (min-width: $middle-width) {
+@media (min-width: @middle-width) {
   .container {
     width: 970px;
   }
 }
-@media (min-width: $large-width) {
+@media (min-width: @large-width) {
   .container {
     width: 1170px;
   }
@@ -100,7 +102,7 @@ table {
   height: 50px;
   width: 100%;
   line-height: 50px;
-  border-bottom: 2px solid $text-color;
+  border-bottom: 2px solid @text-color;
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
@@ -133,7 +135,7 @@ table {
     flex: 0 0 200px;
     margin-right: 20px;
     .avatar-lg {
-      border-radius: $border-radius;
+      border-radius: @border-radius;
       width: 200px;
       height: 200px;
     }
@@ -150,7 +152,7 @@ table {
         line-height: 1.5em;
         font-style: italic;
       }
-      @media (max-width: $middle-width) {
+      @media (max-width: @middle-width) {
         .bio {
           overflow: hidden;
           text-overflow: ellipsis;
@@ -166,8 +168,8 @@ table {
       margin-bottom: 20px;
     }
     .topics, .comments {
-      border: 2px solid $text-color;
-      border-radius: $border-radius;
+      border: 2px solid @text-color;
+      border-radius: @border-radius;
       table {
         border-spacing: 0;
         width: 100%;
@@ -178,12 +180,12 @@ table {
         }
         td {
           padding: 10px 15px;
-          border-top: 2px solid $text-color;
+          border-top: 2px solid @text-color;
         }
       }
     }
   }
-  @media (max-width: $middle-width) {
+  @media (max-width: @middle-width) {
     .info {
       flex: 0 0 1;
       min-width: 100%;
@@ -206,12 +208,12 @@ table {
     }
     td {
       padding: 10px 15px;
-      border-top: 1px solid $text-color;
+      border-top: 1px solid @text-color;
       .avatar {
         width: 24px;
         height: 24px;
         vertical-align: middle;
-        border-radius: $border-radius;
+        border-radius: @border-radius;
       }
     }
   }
@@ -237,14 +239,14 @@ section {
         width: 15%;
       }
     }
-    @media (max-width: $middle-width) {
+    @media (max-width: @middle-width) {
       table {
         flex: 0 0 1;
         width: 100%;
       }
     }
   }
-  @media (max-width: $small-width) {
+  @media (max-width: @small-width) {
     .create-topic {
       th {
         display: none;
@@ -261,7 +263,7 @@ section {
         justify-content: space-between;
         margin: 10px 0;
         padding: 10px 0 20px 0;
-        border-bottom: 1px solid $text-color;
+        border-bottom: 1px solid @text-color;
         &:last-child {
           border: 0;
         }
@@ -272,18 +274,19 @@ section {
         .avatar {
           width: 50px;
           height: 50px;
-          border-radius: $border-radius;
+          border-radius: @border-radius;
         }
         .title {
           font-size: 20px;
           font-weight: 500;
           margin-bottom: 5px;
+          word-break: break-all;
         }
         .tab {
-          background-color: $text-color;
+          background-color: @text-color;
           padding: 0 5px;
           color: #fff;
-          border-radius: $border-radius;
+          border-radius: @border-radius;
         }
       }
     }
@@ -292,21 +295,22 @@ section {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    border-bottom: 1px solid $text-color;
+    border-bottom: 1px solid @text-color;
     .topic {
       flex: 1;
       .title {
         margin-bottom: 10px;
         font-size: 24px;
+        word-break: break-all;
       }
       .topic-info {
         padding: 0 0 10px 5px;
         .tab {
           font-size: 14px;
-          background-color: $text-color;
+          background-color: @text-color;
           padding: 0 5px;
           color: #fff;
-          border-radius: $border-radius;
+          border-radius: @border-radius;
         }
         .topic-actions {
           cursor: pointer;
@@ -316,12 +320,12 @@ section {
     .avatar {
       width: 60px;
       height: 60px;
-      border-radius: $border-radius;
+      border-radius: @border-radius;
     }
   }
   .topic-content {
     line-height: 1.7em;
-    border-bottom: 2px solid $text-color;
+    border-bottom: 2px solid @text-color;
     word-break: break-all;
   }
   .comments {
@@ -332,7 +336,7 @@ section {
     .avatar {
       width: 24px;
       height: 24px;
-      border-radius: $border-radius;
+      border-radius: @border-radius;
       vertical-align: middle;
       margin-right: 10px;
     }
@@ -348,21 +352,21 @@ section {
   cursor: pointer;
   height: 35px;
   line-height: 35px;
-  border: 2px solid $text-color;
+  border: 2px solid @text-color;
   text-align: center;
-  border-radius: $border-radius;
+  border-radius: @border-radius;
   &:hover {
-    background-color: $text-color;
+    background-color: @text-color;
     color: #fff;
   }
 }
 
 .top-good {
   font-size: 24px;
-  background-color: $text-color;
+  background-color: @text-color;
   color: #fff;
   padding: 0 5px;
-  border-radius: $border-radius;
+  border-radius: @border-radius;
   margin-right: 5px;
 }
 
@@ -370,33 +374,33 @@ section {
   display: flex;
   text-align: center;
   align-items: center;
-  border-bottom: 1px solid $text-color;
+  border-bottom: 1px solid @text-color;
   &>div {
     cursor: pointer;
     padding: 5px 0;
     flex: 1;
   }
   &>div.active {
-    background-color: $text-color;
+    background-color: @text-color;
     color: #fff;
   }
 }
 
 .footer {
   margin-top: 20px;
-  border-top: 2px solid $text-color;
+  border-top: 2px solid @text-color;
   padding: 10px 0;
 }
 
 .toast {
   z-index: 100;
-  position: absolute;
+  position: fixed;
   top: 40px;
   right: 50px;
   width: 300px;
   min-height: 40px;
   padding: 10px;
-  border: 2px solid $text-color;
-  border-radius: $border-radius;
-  background-color: #fff;
+  border: 2px solid @text-color;
+  border-radius: @border-radius;
+  background-color: #f5f6f7;
 }

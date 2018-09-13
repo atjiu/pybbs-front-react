@@ -165,11 +165,11 @@ module.exports = {
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
           {
-            test: /\.scss$/,
+            test: /\.less$/,
             loaders: [
               require.resolve('style-loader'),
               require.resolve('css-loader'),
-              require.resolve('sass-loader')
+              require.resolve('less-loader')
             ]
           },
           {

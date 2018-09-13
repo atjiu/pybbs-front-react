@@ -59,8 +59,8 @@
     "test": "node scripts/test.js --env=jsdom"
   },
   "devDependencies": {
-    "node-sass": "^4.9.3",
-    "sass-loader": "^7.1.0"
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0"
   },
   "jest": {
     "collectCoverageFrom": [

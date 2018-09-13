@@ -37,11 +37,6 @@ class Home extends Component {
           </div>
           <div>
             <ul>
-              {
-                this.props.topic_list.topics.length === 0 && !this.props.topic_list.loading
-                  ? <span>这里什么都没有...</span>
-                  : null
-              }
               <InfiniteScroll
                 pageStart={1}
                 hasMore={this.props.topic_list.hasMore}
