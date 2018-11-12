@@ -2,7 +2,7 @@
 
 服务端地址：https://github.com/tomoya92/pybbs
 
-接口地址修改位置：`src/js/axios.js` 
+接口地址修改位置：`src/js/axios.js`
 
 ```js
 const Axios = axios.create({
@@ -51,9 +51,14 @@ serve build
 nohup serve build &
 ```
 
+## 提问
+
+- [开发俱乐部](https://17dev.club/)
+- Github Issue
+
 ## 贡献
 
-欢迎大家提 issues 及 pr 
+欢迎大家提 issues 及 pr
 
 ## 捐赠
 
