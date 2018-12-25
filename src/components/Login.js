@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { showToast } from '../actions/toast';
-import { updateHeader } from '../actions/header'; 
+import { updateHeader } from '../actions/header';
 import Axios from '../js/axios';
 
 class Login extends Component {
@@ -38,7 +38,7 @@ class Login extends Component {
 
   render() {
     return (
-      <section className="animated bounce">
+      <section className="animated fadeIn">
         {this.state.enable_redirect ? <Redirect to={this.state.redirect_url} /> : null}
         <table border="0" className="login-register">
           <caption><h3>登录</h3></caption>

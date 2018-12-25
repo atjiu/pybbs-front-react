@@ -75,7 +75,9 @@ table {
     align-items: center;
   }
 }
-
+.commentBtn {
+  margin-top: 5px;
+}
 .container {
   padding-right: 15px;
   padding-left: 15px;
@@ -86,15 +88,24 @@ table {
   .container {
     width: 750px;
   }
+  .commentBtn {
+    display: block;
+  }
 }
 @media (min-width: @middle-width) {
   .container {
     width: 970px;
   }
+  .commentBtn {
+    display: block;
+  }
 }
 @media (min-width: @large-width) {
   .container {
     width: 1170px;
+  }
+  .commentBtn {
+    display: none;
   }
 }
 

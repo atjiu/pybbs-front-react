@@ -26,7 +26,7 @@ class Home extends Component {
 
   render() {
     return (
-      <section className="animated bounce">
+      <section className="animated fadeIn">
         <div className="topic-list">
           <div className="tabs">
             <div className={this.props.topic_list.currentTab === 'all' ? 'active' : null} onClick={() => this.changeTabFetchData('all')}>全部</div>

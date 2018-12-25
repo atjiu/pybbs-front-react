@@ -72,7 +72,7 @@ class EditTopic extends Component {
 
   render() {
     return (
-      <section className="animated bounce">
+      <section className="animated fadeIn">
         {this.state.enable_redirect ? <Redirect to={this.state.redirect_url} /> : null}
         {
           this.state.loading

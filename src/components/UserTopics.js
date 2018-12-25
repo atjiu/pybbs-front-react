@@ -19,9 +19,9 @@ class UserTopics extends Component {
   loadMore() {
     this.props.dispatch(loadMore(this.props.topics.username, this.props.topics.pageNo));
   }
-  render() { 
+  render() {
     return (
-      <section className="animated bounce">
+      <section className="animated fadeIn">
         <div className="topic-list">
           <div>
             <ul>
@@ -54,7 +54,7 @@ class UserTopics extends Component {
     );
   }
 }
- 
+
 export default connect((state) => {
   return { topics: state.topics }
 })(withRouter(UserTopics))

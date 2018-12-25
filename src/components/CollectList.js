@@ -19,9 +19,9 @@ class CollectList extends Component {
   loadMore() {
     this.props.dispatch(loadMore(this.props.collects.username, this.props.collects.pageNo));
   }
-  render() { 
+  render() {
     return (
-      <section className="animated bounce">
+      <section className="animated fadeIn">
         <div className="topic-list">
           <div>
             <ul>
@@ -54,7 +54,7 @@ class CollectList extends Component {
     );
   }
 }
- 
+
 export default connect((state) => {
   return { collects: state.collects }
 })(withRouter(CollectList))

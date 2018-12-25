@@ -81,7 +81,7 @@ class UserSettings extends Component {
   }
   render() {
     return (
-      <section className="animated bounce user-settings">
+      <section className="animated fadeIn user-settings">
         {
           this.state.loading
           ? <Loading/>

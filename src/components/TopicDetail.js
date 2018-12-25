@@ -127,7 +127,7 @@ class TopicDetail extends Component {
       tab = "招聘"
     }
     return (
-      <section className="animated bounce">
+      <section className="animated fadeIn">
         {
           this.state.enable_redirect
           ? <Redirect to={this.state.redirect_url}/>
@@ -182,7 +182,7 @@ class TopicDetail extends Component {
                   <img src={this.state.topicUser.avatar ? this.state.topicUser.avatar : DefaultAvatar} className="avatar" alt="avatar" />
                 </div>
                 {
-                  this.state.topic.content 
+                  this.state.topic.content
                   ? <div className="topic-content" dangerouslySetInnerHTML={{__html: this.state.topic.content}}></div>
                   : null
                 }

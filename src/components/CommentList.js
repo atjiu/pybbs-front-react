@@ -34,44 +34,48 @@ class CommentList extends Component {
         this.props.dispatch(showToast("您还没有登录哦..."))
         return;
       }
-      const content = this.refs.content.value;
-      if (this.state.action === 'create') {
-        Axios.post("/comment/create", {
-          topicId: this.state.topicId,
-          content: content,
-          commentId: this.state.replyId
-        }).then(({data}) => {
-          if(data.code === 200) {
-            this.setState({
-              comments: this.state.comments.concat(data.detail),
-              replyId: ''
-            });
-            this.refs.content.value = "";
-          } else {
-            this.props.dispatch(showToast(data.description))
-          }
-        }).catch(err => this.props.dispatch(showToast(err.toString())))
-      } else if (this.state.action === 'update') {
-        Axios.post("/comment/update", {
-          id: this.state.updateId,
-          content: content
-        }).then(({data}) => {
-          if(data.code === 200) {
-            let comments = this.state.comments;
-            comments[this.state.updateIndex].content = content;
-            this.setState({
-              comments: comments,
-              updateId: '',
-              updateIndex: -1
-            });
-            this.refs.content.value = "";
-            const anchorElement = this.refs[this.state.updateId];
-            anchorElement.focus();
-          } else {
-            this.props.dispatch(showToast(data.description))
-          }
-        }).catch(err => this.props.dispatch(showToast(err.toString())))
-      }
+      this.saveOrUpdateComment();
+    }
+  }
+  saveOrUpdateComment() {
+    const content = this.refs.content.value;
+    if (this.state.action === 'create') {
+      Axios.post("/comment/create", {
+        topicId: this.state.topicId,
+        content: content,
+        commentId: this.state.replyId
+      }).then(({ data }) => {
+        if (data.code === 200) {
+          this.setState({
+            comments: this.state.comments.concat(data.detail),
+            replyId: ''
+          });
+          this.refs.content.value = "";
+        } else {
+          this.props.dispatch(showToast(data.description))
+        }
+      }).catch(err => this.props.dispatch(showToast(err.toString())))
+    } else if (this.state.action === 'update') {
+      Axios.post("/comment/update", {
+        id: this.state.updateId,
+        content: content
+      }).then(({ data }) => {
+        if (data.code === 200) {
+          let comments = this.state.comments;
+          comments[this.state.updateIndex].content = content;
+          this.setState({
+            comments: comments,
+            updateId: '',
+            updateIndex: -1
+          });
+          this.refs.content.value = "";
+          // 下面这两行不知道干啥的了。。
+          // const anchorElement = this.refs[this.state.updateId];
+          // anchorElement.focus();
+        } else {
+          this.props.dispatch(showToast(data.description))
+        }
+      }).catch(err => this.props.dispatch(showToast(err.toString())))
     }
   }
   deleteHandler(id, i) {
@@ -150,13 +154,14 @@ class CommentList extends Component {
             </div>
         }
         <div className="comment-editor">
-          <textarea 
-            ref="content" 
-            rows="5" 
-            onKeyPress={this.createComment} 
-            defaultValue={this.state.commentContent} 
+          <textarea
+            ref="content"
+            rows="5"
+            onKeyPress={this.createComment}
+            defaultValue={this.state.commentContent}
             placeholder="写点什么! (不支持Markdown语法, Ctrl+Enter提交)"/>
         </div>
+        <button onClick={() => this.saveOrUpdateComment()} className="commentBtn">评论</button>
       </div>
     )
   }
