@@ -1,6 +1,6 @@
 > pybbs前端项目，使用react, redux, react-router, axios 开发
 
-服务端地址：https://github.com/tomoya92/pybbs
+服务端地址：https://github.com/tomoya92/pybbs/tree/v4.0-mongodb-api
 
 接口地址修改位置：`src/js/axios.js`
 
